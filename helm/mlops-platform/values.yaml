@@ -1,0 +1,89 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/abhisheksawant52/enterprise-mlops-platform
+  pullPolicy: IfNotPresent
+  tag: "" # defaults to .Chart.AppVersion
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  fsGroup: 10001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+service:
+  type: ClusterIP
+  port: 8000
+
+containerPort: 8000
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: mlops.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 75
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+networkPolicy:
+  enabled: true
+  # CIDR allowed to reach the API (e.g. the ingress controller namespace range).
+  ingressCidr: 10.0.0.0/8
+
+# Environment variables (MLOPS_* prefix) rendered into the ConfigMap.
+config:
+  MLOPS_ENVIRONMENT: dev
+  MLOPS_LOG_LEVEL: INFO
+  MLOPS_LOG_JSON: "true"
+  MLOPS_REGISTRY_URI: http://mlflow.mlops.svc.cluster.local:5000
+  MLOPS_ARTIFACT_BUCKET: mlops-artifacts
+  MLOPS_MODEL_BUCKET: mlops-models
+  MLOPS_AWS_REGION: us-east-1
+
+# Secret values (placeholders only — supply via CI/secret manager, never commit).
+secret:
+  MLOPS_METADATA_DB_DSN: ""
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

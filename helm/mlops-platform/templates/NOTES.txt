@@ -1,0 +1,19 @@
+The MLOps Platform control-plane has been deployed as release {{ .Release.Name }}.
+
+1. Check rollout status:
+   kubectl rollout status deployment/{{ include "mlops-platform.fullname" . }} -n {{ .Release.Namespace }}
+
+2. Port-forward the API locally:
+   kubectl port-forward svc/{{ include "mlops-platform.fullname" . }} 8000:{{ .Values.service.port }} -n {{ .Release.Namespace }}
+
+3. Verify health:
+   curl http://127.0.0.1:8000/health
+   curl http://127.0.0.1:8000/ready
+
+{{- if .Values.ingress.enabled }}
+
+The API is exposed via Ingress at:
+{{- range .Values.ingress.hosts }}
+  http://{{ .host }}
+{{- end }}
+{{- end }}

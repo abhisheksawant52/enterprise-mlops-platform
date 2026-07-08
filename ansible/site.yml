@@ -1,4 +1,8 @@
 ---
-- hosts: all
+# Baseline host preparation for MLOps platform nodes (bastion / self-managed
+# workers). Kubernetes workloads are deployed via Helm, not Ansible.
+- name: Prepare MLOps platform hosts
+  hosts: all
+  become: true
   roles:
     - common

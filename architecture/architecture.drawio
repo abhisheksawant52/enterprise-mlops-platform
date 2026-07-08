@@ -1,1 +1,43 @@
-drawio-placeholder
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="mlops-platform" name="MLOps Platform">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="api" value="Control-plane API (FastAPI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pipe" value="Pipeline coordinator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="320" y="60" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="train" value="Training -> EKS / S3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="600" y="20" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="reg" value="Registry -> MLflow / RDS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="600" y="90" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dep" value="Deployment -> EKS serving" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="600" y="160" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="mon" value="Monitoring -> metrics store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="600" y="230" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="endArrow=block;html=1;" edge="1" parent="1" source="api" target="pipe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="endArrow=block;html=1;" edge="1" parent="1" source="pipe" target="train">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="endArrow=block;html=1;" edge="1" parent="1" source="pipe" target="reg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="endArrow=block;html=1;" edge="1" parent="1" source="pipe" target="dep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="endArrow=block;html=1;" edge="1" parent="1" source="pipe" target="mon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

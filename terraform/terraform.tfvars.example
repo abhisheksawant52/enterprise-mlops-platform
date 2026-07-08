@@ -1,0 +1,18 @@
+aws_region         = "us-east-1"
+environment        = "dev"
+name_prefix        = "mlops"
+vpc_id             = "vpc-0123456789abcdef0"
+private_subnet_ids = ["subnet-0aaa1111", "subnet-0bbb2222", "subnet-0ccc3333"]
+
+kubernetes_version  = "1.30"
+node_instance_types = ["m6i.large"]
+node_desired_size   = 3
+
+metadata_db_instance_class = "db.t3.medium"
+metadata_db_username       = "mlops"
+# Provide the password via `TF_VAR_metadata_db_password` or a secrets manager, not here.
+metadata_db_password = "change-me-via-secret"
+
+tags = {
+  Owner = "platform-team"
+}

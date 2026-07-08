@@ -1,0 +1,16 @@
+apiVersion: v2
+name: mlops-platform
+description: Helm chart for the Enterprise MLOps Platform control-plane API
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - mlops
+  - fastapi
+  - model-registry
+  - kubernetes
+home: https://github.com/abhisheksawant52/enterprise-mlops-platform
+sources:
+  - https://github.com/abhisheksawant52/enterprise-mlops-platform
+maintainers:
+  - name: Abhishek Sawant

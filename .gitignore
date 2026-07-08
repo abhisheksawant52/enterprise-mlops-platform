@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+!*.tfvars.example
+!environments/**/*.tfvars
+.terraform.lock.hcl
+override.tf
+override.tf.json
+
+# Helm
+*.tgz
+charts/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

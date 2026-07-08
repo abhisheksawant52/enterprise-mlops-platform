@@ -1,3 +1,23 @@
 ---
-- name: Ping
-  ping:
+- name: Ensure base packages are present
+  ansible.builtin.package:
+    name:
+      - ca-certificates
+      - curl
+      - unzip
+    state: present
+
+- name: Ensure the platform service account exists
+  ansible.builtin.user:
+    name: mlops
+    system: true
+    shell: /usr/sbin/nologin
+    create_home: false
+
+- name: Create platform configuration directory
+  ansible.builtin.file:
+    path: /etc/mlops-platform
+    state: directory
+    owner: mlops
+    group: mlops
+    mode: "0750"

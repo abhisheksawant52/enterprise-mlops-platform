@@ -1,0 +1,21 @@
+{{- if .Values.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "mlops-platform.fullname" . }}
+  labels:
+    {{- include "mlops-platform.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "mlops-platform.selectorLabels" . | nindent 6 }}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - ipBlock:
+            cidr: {{ .Values.networkPolicy.ingressCidr | quote }}
+      ports:
+        - protocol: TCP
+          port: {{ .Values.containerPort }}
+{{- end }}
